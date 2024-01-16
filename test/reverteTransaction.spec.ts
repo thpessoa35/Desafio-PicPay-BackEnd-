@@ -6,7 +6,7 @@ test('test', async ()=>{
   const prismaService = new PrismaService()
   const prismaTransactionRepository = new PrismaTransactionRepository(prismaService)
 
-  await prismaTransactionRepository.reverseTransactionById('05b3acb9-2a27-4103-b45d-67dce278b2d7')
+  await prismaTransactionRepository.reverseTransactionById('3e52560a-b93d-4e11-9520-30825ff9131c')
 
   expect(prismaTransactionRepository.reverseTransactionById).toBeTruthy()
 })

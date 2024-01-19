@@ -56,4 +56,15 @@ export class PrismaClientRepository implements IUserRepository {
             throw new Error('Erro ao buscar email.');
         }
     }
+    async get(): Promise<Client[]> {
+        const findALL = await this.prismaService.client.findMany()
+        return findALL.map((client)=> ({...client})) as any
+    }
+    async FindById(idClient: string): Promise<Client | null>{
+        const findID = await this.prismaService.client.findUnique({where: {idClient: idClient}})
+        if(!findID){
+            throw Error('Usuario não Encontrado no banco de dados.') 
+        }
+        return findID as any
+    }
 }

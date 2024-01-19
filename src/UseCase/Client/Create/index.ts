@@ -1,5 +1,5 @@
-import { PrismaService } from "../../Infra/database/prisma";
-import { PrismaClientRepository } from "../../Repository/PrismaUserRepository";
+import { PrismaService } from "../../../Infra/database/prisma";
+import { PrismaClientRepository } from "../../../Repository/PrismaUserRepository";
 import { ClientController } from "./ClientController";
 import { ClientUseCase } from "./ClientUseCase";
 

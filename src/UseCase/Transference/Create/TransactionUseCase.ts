@@ -3,8 +3,8 @@ import { Transaction } from "../../../Entites/Transaction";
 import { ITransactionRepository } from "../../../Repository/Service/TransactionRepository";
 import { EmailService } from "../../../Services/EmailService";
 import { EmailUseCase } from "../../../Services/EmailUseCase";
-import { ValidationService } from "../../Erros/TransactionError/ValidationService";
-import { ValidationTransaction } from "../../Erros/TransactionError/ValidationTransaction";
+import { ValidationService } from "../../Erros/TransactionError/Create/ValidationService";
+import { ValidationTransaction } from "../../Erros/TransactionError/Create/ValidationTransaction";
 import { TransactionDTO } from "./TransactionDTO";
 
 export class TransactionUseCase {

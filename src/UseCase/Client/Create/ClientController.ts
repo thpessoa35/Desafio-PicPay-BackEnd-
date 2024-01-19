@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { ClientUseCase } from "./ClientUseCase";
-import { HandleErrorController } from "../Erros/ClientErros/HandleErrorController";
-import { HandleSucessController } from "../Erros/ClientErros/HandleSucessController";
+import { HandleErrorController } from "../../Erros/ClientErros/Create/HandleErrorController";
+import { HandleSucessController } from "../../Erros/ClientErros/Create/HandleSucessController";
 
 export class ClientController {
     private handleErrorController: HandleErrorController

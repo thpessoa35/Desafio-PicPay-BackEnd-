@@ -1,7 +1,8 @@
-import { IUserRepository } from '../../../Repository/Service/UserRepository';
-import { CaracterEmail } from '../../Client/validator/validatorEmail';
-import { ErrorFindByEmail } from './ErrorsCustomization/ErrorEmailCustomization/ErrorFindByEmail';
-import { ErrorValidationEmail } from './ErrorsCustomization/ErrorEmailCustomization/ValidateEmail';
+import { IUserRepository } from '../../../../Repository/Service/UserRepository';
+import { CaracterEmail } from '../../../Client/Create/validator/validatorEmail';
+import { ErrorFindByEmail } from '../ErrorsCustomization/Create/ErrorEmailCustomization/ErrorFindByEmail';
+import { ErrorValidationEmail } from '../ErrorsCustomization/Create/ErrorEmailCustomization/ValidateEmail';
+
 
 export class EmailValidation {
   private iUserRepository: IUserRepository;

@@ -1,10 +1,10 @@
-import { Client } from "../../Entites/client";
-import { IUserRepository } from "../../Repository/Service/UserRepository";
+import { Client } from "../../../Entites/client";
+import { IUserRepository } from "../../../Repository/Service/UserRepository";
 import { ClientDTO } from "./Client.DTO";
 import bcrypt from 'bcrypt'
-import { EmailValidation } from "../Erros/ClientErros/ValidationEmail";
-import { ValidationCpf } from "../Erros/ClientErros/ValidationCpf";
-import { ValidationPassword } from "../Erros/ClientErros/ValidationPassword";
+import { EmailValidation } from "../../Erros/ClientErros/Create/ValidationEmail";
+import { ValidationCpf } from "../../Erros/ClientErros/Create/ValidationCpf";
+import { ValidationPassword } from "../../Erros/ClientErros/Create/ValidationPassword";
 
 export class ClientUseCase {
     private iUserRepository: IUserRepository;

@@ -1,12 +1,11 @@
 import { ClientUseCase } from "./ClientUseCase";
-import { IUserRepository, MockUserRepository } from "../../Repository/Service/UserRepository";
+import { IUserRepository, MockUserRepository } from "../../../Repository/Service/UserRepository";
 import { ClientDTO } from "./Client.DTO";
 import { CaracterEmail } from "./validator/validatorEmail";
-import ValidatorPassword, { ErrosSenha }  from "./validator/validatorPassword";
-import { validateCPF } from "./validator/validatorCpf";
-import { ValidationCpf } from "../Erros/ClientErros/ValidationCpf";
-import { ErrorFindByCpf } from "../Erros/ClientErros/ErrorsCustomization/ErrorCpfCustomization/ErrorFindByCpf";
-import { ErrorFindByEmail } from "../Erros/ClientErros/ErrorsCustomization/ErrorEmailCustomization/ErrorFindByEmail";
+import ValidatorPassword  from "./validator/validatorPassword";
+import { ErrorFindByEmail } from "../../Erros/ClientErros/ErrorsCustomization/Create/ErrorEmailCustomization/ErrorFindByEmail";
+import { ErrorFindByCpf } from "../../Erros/ClientErros/ErrorsCustomization/Create/ErrorCpfCustomization/ErrorFindByCpf";
+
 
 describe('Testing UseCase Erros async', () => {
     let clientUseCase: ClientUseCase;

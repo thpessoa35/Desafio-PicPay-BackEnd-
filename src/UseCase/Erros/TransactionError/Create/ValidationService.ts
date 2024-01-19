@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ErrorValidadeService } from "./ErrorsCustomization/ErrorValidateService";
+import { ErrorValidadeService } from "../ErrorsCustomization/ErrorValidateService";
 
 export class ValidationService {
     constructor() { }

@@ -1,6 +1,8 @@
 import { Transaction } from "../Entites/Transaction";
 import { PrismaService } from "../Infra/database/prisma";
 import { ErrorFindByID } from "../UseCase/Erros/TransactionError/ErrorsCustomization/ErrorFindById";
+
+
 import { ITransactionRepository } from "./Service/TransactionRepository";
 
 export class PrismaTransactionRepository implements ITransactionRepository {
@@ -162,5 +164,23 @@ export class PrismaTransactionRepository implements ITransactionRepository {
         })
         return FindEmail?.email as any
     }
-}
+    async GetUniqueTransaction(idTransfer: string): Promise<Transaction > {
+        const findbyUnique = await this.prismaService.transfer.findUnique({
+            where: { idTransfer: idTransfer },
+            select: {
+                idTransfer: true,
+                amount: true,
+                createdAt: true,
+                sender: {
+                    select: { cpf: true, email: true, name: true }
+                },
+                receiver: {
+                    select: { cpf: true, email: true, name: true }
+                }
+            }
+        });
+
+        return findbyUnique as any;
+    }
+};
 

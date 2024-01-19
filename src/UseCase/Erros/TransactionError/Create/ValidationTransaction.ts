@@ -1,9 +1,8 @@
-import axios from "axios";
-import { ITransactionRepository } from "../../../Repository/Service/TransactionRepository";
-import { ErrorAmount } from "./ErrorsCustomization/ErrorAmount";
-import { ErrorLogistics } from "./ErrorsCustomization/ErrorLogistics";
-import { EmailService } from "../../../Services/EmailService";
-import { EmailUseCase } from "../../../Services/EmailUseCase";
+import { ITransactionRepository } from "../../../../Repository/Service/TransactionRepository";
+import { ErrorAmount } from "../ErrorsCustomization/ErrorAmount";
+import { ErrorLogistics } from "../ErrorsCustomization/ErrorLogistics";
+import { EmailService } from "../../../../Services/EmailService";
+import { EmailUseCase } from "../../../../Services/EmailUseCase";
 import { ValidationService } from "./ValidationService";
 
 export class ValidationTransaction {

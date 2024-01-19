@@ -1,9 +1,10 @@
 import { Response } from "express";
-import { ErrorValidationEmail } from "./ErrorsCustomization/ErrorEmailCustomization/ValidateEmail";
-import { ErrorValidationCpf } from "./ErrorsCustomization/ErrorCpfCustomization/ValidateCpf";
-import { ErrorFindByCpf } from "./ErrorsCustomization/ErrorCpfCustomization/ErrorFindByCpf";
-import { ValidatePassword } from "./ErrorsCustomization/ErrorPasswordCustomization/ValidationPassword";
-import { ErrorFindByEmail } from "./ErrorsCustomization/ErrorEmailCustomization/ErrorFindByEmail";
+import { ErrorValidationEmail } from "../ErrorsCustomization/Create/ErrorEmailCustomization/ValidateEmail";
+import { ErrorFindByEmail } from "../ErrorsCustomization/Create/ErrorEmailCustomization/ErrorFindByEmail";
+import { ErrorValidationCpf } from "../ErrorsCustomization/Create/ErrorCpfCustomization/ValidateCpf";
+import { ErrorFindByCpf } from "../ErrorsCustomization/Create/ErrorCpfCustomization/ErrorFindByCpf";
+import { ValidatePassword } from "../ErrorsCustomization/Create/ErrorPasswordCustomization/ValidationPassword";
+
 
 export class HandleErrorController extends Error {
     

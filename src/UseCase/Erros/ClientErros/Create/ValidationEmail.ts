@@ -1,7 +1,8 @@
 import { IUserRepository } from '../../../../Repository/Service/UserRepository';
-import { CaracterEmail } from '../../../Client/Create/validator/validatorEmail';
+
 import { ErrorFindByEmail } from '../ErrorsCustomization/Create/ErrorEmailCustomization/ErrorFindByEmail';
 import { ErrorValidationEmail } from '../ErrorsCustomization/Create/ErrorEmailCustomization/ValidateEmail';
+import { CaracterEmail } from './validator/validatorEmail';
 
 
 export class EmailValidation {

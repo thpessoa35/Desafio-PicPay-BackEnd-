@@ -12,8 +12,8 @@ export class ClientController {
     }
     async save(req: Request, res: Response): Promise<Response> {
         try {
-            const { email, name, password, cpf } = req.body;
-            await this.clientUseCase.create({ email, name, password, cpf });
+            const { email, name, password, cpf, type } = req.body;
+            await this.clientUseCase.create({ email, name, password, cpf, type });
 
             return this.handleSucessController.successResponse(res, 'Client created successfully');
         } catch (error: any) {

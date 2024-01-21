@@ -1,9 +1,8 @@
 import { Transaction } from "../Entites/Transaction";
 import { PrismaService } from "../Infra/database/prisma";
 import { ErrorFindByID } from "../UseCase/Erros/TransactionError/ErrorsCustomization/ErrorFindById";
-
-
 import { ITransactionRepository } from "./Service/TransactionRepository";
+
 
 export class PrismaTransactionRepository implements ITransactionRepository {
     private prismaService: PrismaService
@@ -12,18 +11,25 @@ export class PrismaTransactionRepository implements ITransactionRepository {
     }
     async create(data: Transaction): Promise<void> {
         console.log('Saving transaction:', data);
-        const transferData = {
-            idTransfer: data.idTransfer,
-            amount: data.amount,
-            sender: { connect: { idClient: data.sender } },
-            receiver: { connect: { idClient: data.receiver } },
-            logistics: data.logistics
-                ? { connect: { idLogistics: data.logistics } }
-                : undefined,
-        };
-        await this.prismaService.transfer.create({
-            data: transferData
-        });
+    
+        try {    
+            const transferData = {
+                idTransfer: data.idTransfer,
+                amount: data.amount,
+                sender: { connect: { idClient: data.sender } },
+                receiver: { connect: { idClient: data.receiver } },
+        
+            };
+    
+            await this.prismaService.transfer.create({
+                data: transferData
+            });
+    
+            console.log('Transação criada com sucesso.');
+        } catch (error: any) {
+            console.error('Erro ao criar transação:', error.message);
+            throw error; 
+        }
     }
     async get(): Promise<Transaction[]> {
         const findALL = await this.prismaService.transfer.findMany()
@@ -38,26 +44,41 @@ export class PrismaTransactionRepository implements ITransactionRepository {
 
         return client?.sale as any
     }
+    async getType(idClient: string): Promise<string | null> {
+        try{
+
+            const client = await this.prismaService.client.findUnique({
+                where: { idClient: idClient },
+                select: { type: true }
+            })
+            
+            return client?.type as any
+        }catch(error){
+            throw error
+        }
+    }
 
 
-    async increaseBalance(receiver: string, amount: number): Promise<void> {
+    async increaseBalance(receiverId: string, amount: number): Promise<void> {
         const existingClient = await this.prismaService.client.findUnique({
-            where: { idClient: receiver },
+            where: { idClient: receiverId },
         });
 
         if (!existingClient) {
+
             throw new ErrorFindByID()
         }
 
+
         await this.prismaService.client.update({
-            where: { idClient: receiver },
+            where: { idClient: receiverId },
             data: {
                 sale: {
                     increment: amount,
                 },
             },
         });
-    };
+    }
     async decreaseBalance(sender: string, amount: number): Promise<void> {
         const existingClient = await this.prismaService.client.findUnique({
             where: { idClient: sender },
@@ -164,7 +185,7 @@ export class PrismaTransactionRepository implements ITransactionRepository {
         })
         return FindEmail?.email as any
     }
-    async GetUniqueTransaction(idTransfer: string): Promise<Transaction > {
+    async GetUniqueTransaction(idTransfer: string): Promise<Transaction> {
         const findbyUnique = await this.prismaService.transfer.findUnique({
             where: { idTransfer: idTransfer },
             select: {

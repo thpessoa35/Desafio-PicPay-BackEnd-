@@ -14,7 +14,8 @@ export class PrismaClientRepository implements IUserRepository {
                     name: data.name,
                     password: data.password,
                     cpf: data.cpf,
-                    sale: 0
+                    sale: 0,
+                    type: data.type
                 }
             });
         } catch (error) {

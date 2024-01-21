@@ -3,4 +3,5 @@ export interface ClientDTO {
     name: string;
     password: string;
     cpf: string;
+    type: string
 }

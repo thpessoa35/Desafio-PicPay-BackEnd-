@@ -1,6 +1,7 @@
 
-import ValidatorPassword, { ErrosSenha } from "../../../Client/Create/validator/validatorPassword";
+
 import { ValidatePassword } from "../ErrorsCustomization/Create/ErrorPasswordCustomization/ValidationPassword";
+import ValidatorPassword, { ErrosSenha } from "./validator/validatorPassword";
 
 
 export class ValidationPassword {

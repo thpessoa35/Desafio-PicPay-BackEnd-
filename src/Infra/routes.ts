@@ -16,13 +16,6 @@ router.post('/client', (req, res) => {
     return clientController.save(req, res)
 });
 
-
-
-router.post('/send-email', (req, res) => {
-    return emailController.sendEmail(req, res)
-});
-
-
 router.get('/transaction', (req, res) => {
     return getTransactionController.findMany(req, res)
 });
@@ -33,7 +26,5 @@ router.get('/transaction/:idTransfer', (req, res) => {
 router.post('/transaction', (req, res) => {
     return transactionController.save(req, res)
 });
-
-
 
 export { router }

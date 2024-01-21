@@ -1,10 +1,11 @@
 import { ClientUseCase } from "./ClientUseCase";
 import { IUserRepository, MockUserRepository } from "../../../Repository/Service/UserRepository";
 import { ClientDTO } from "./Client.DTO";
-import { CaracterEmail } from "./validator/validatorEmail";
-import ValidatorPassword  from "./validator/validatorPassword";
+
 import { ErrorFindByEmail } from "../../Erros/ClientErros/ErrorsCustomization/Create/ErrorEmailCustomization/ErrorFindByEmail";
 import { ErrorFindByCpf } from "../../Erros/ClientErros/ErrorsCustomization/Create/ErrorCpfCustomization/ErrorFindByCpf";
+import ValidatorPassword from "../../Erros/ClientErros/Create/validator/validatorPassword";
+import { CaracterEmail } from "../../Erros/ClientErros/Create/validator/validatorEmail";
 
 
 describe('Testing UseCase Erros async', () => {
@@ -86,3 +87,27 @@ describe('Testing UseCase Erros sync',()=>{
         expect(result).toBeTruthy();
     });
 });
+
+
+describe('Creating User In UseCase',  ()=>{
+    let clientUseCase: ClientUseCase;
+    let mockUserRepository: IUserRepository; 
+    beforeEach(()=>{
+        mockUserRepository = MockUserRepository
+        clientUseCase = new ClientUseCase(mockUserRepository)
+    })
+    test('testing Created User', async  ()=>{
+
+        const CreatedUser: ClientDTO = {
+            email: 'test123@gmail.com',
+            cpf: '75593360600',
+            name: 'thiago',
+            password: 'Tmp123456'
+        }
+        await clientUseCase.create(CreatedUser);
+
+        expect(mockUserRepository.create).toHaveBeenCalled()
+      
+
+    })
+})

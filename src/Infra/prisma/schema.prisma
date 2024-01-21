@@ -17,6 +17,7 @@ model client {
     password          String
     cpf               String     @unique
     sale              Decimal?   @db.Decimal(10, 2)
+    type              String?
     created_at        DateTime   @default(now())
     sentTransfers     Transfer[] @relation("sentTransfers")
     receivedTransfers Transfer[] @relation("receivedTransfers")
@@ -24,27 +25,12 @@ model client {
     @@map("client")
 }
 
-model logistics {
-    idLogistics       String     @id @default(uuid())
-    email             String     @unique
-    name              String
-    password          String
-    CPF_CNPJ          String     @unique
-    sale              Decimal?   @db.Decimal(10, 2)
-    created_at        DateTime   @default(now())
-    receivedTransfers Transfer[] @relation("receivedTransfersLogistics")
-
-    @@map("client-Logistics")
-}
-
 model Transfer {
     idTransfer       String   @id @default(uuid())
     amount           Decimal  @db.Decimal(10, 2)
     senderClientId   String
     receiverClientId String
-    logisticsId      String?
     createdAt        DateTime @default(now()) @map("created_at")
-    sender    client     @relation("sentTransfers", fields: [senderClientId], references: [idClient])
-    receiver  client     @relation("receivedTransfers", fields: [receiverClientId], references: [idClient])
-    logistics logistics? @relation("receivedTransfersLogistics", fields: [logisticsId], references: [idLogistics])
+    sender           client   @relation("sentTransfers", fields: [senderClientId], references: [idClient])
+    receiver         client   @relation("receivedTransfers", fields: [receiverClientId], references: [idClient])
 }

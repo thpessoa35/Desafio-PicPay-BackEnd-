@@ -1,7 +1,7 @@
 import { IUserRepository } from "../../../../Repository/Service/UserRepository";
-import { validateCPF } from "../../../Client/Create/validator/validatorCpf";
 import { ErrorFindByCpf } from "../ErrorsCustomization/Create/ErrorCpfCustomization/ErrorFindByCpf";
 import { ErrorValidationCpf } from "../ErrorsCustomization/Create/ErrorCpfCustomization/ValidateCpf";
+import { validateCPF } from "./validator/validatorCpf";
 
 
 export class ValidationCpf {

@@ -10,26 +10,21 @@ import { TransactionDTO } from "./TransactionDTO";
 export class TransactionUseCase {
     private validationTransaction: ValidationTransaction;
     private validationService: ValidationService;
-    private emailUseCase: EmailUseCase
-    private emailService: EmailService
+    
 
     constructor(private iTransactionRepository: ITransactionRepository) {
         this.validationTransaction = new ValidationTransaction(iTransactionRepository);
         this.validationService = new ValidationService();
-        this.emailService = new EmailService()
-        this.emailUseCase = new EmailUseCase(this.emailService)
+        
     }
 
     async create(data: TransactionDTO) {
         try {
 
             await this.validationTransaction.validateAmount(data.sender, data.amount);
+            await this.validationTransaction.getType(data.sender)
             await this.validationTransaction.decreaseBalance(data.sender, data.amount);
             await this.validationTransaction.increaseBalance(data.receiver, data.amount);
-
-            if (data.logistics !== undefined) {
-                await this.validationTransaction.validateLogistic(data.logistics, data.sender);
-            }
 
             const serviceResult = await this.validationService.validateService();
             const newTransaction = new Transaction({

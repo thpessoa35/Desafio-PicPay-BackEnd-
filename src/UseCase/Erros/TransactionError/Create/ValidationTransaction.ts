@@ -4,6 +4,7 @@ import { ErrorLogistics } from "../ErrorsCustomization/ErrorLogistics";
 import { EmailService } from "../../../../Services/EmailService";
 import { EmailUseCase } from "../../../../Services/EmailUseCase";
 import { ValidationService } from "./ValidationService";
+import { ErrorTypeClient } from "../../ClientErros/ErrorsCustomization/Create/ErrorTypeClient/ErrorTypeClient";
 
 export class ValidationTransaction {
     emailService: EmailService
@@ -79,4 +80,16 @@ export class ValidationTransaction {
             return validationService.message
         }
     }
-}
+    async getType(sender: string) {
+
+        try {
+            const type = await this.iTransactionRepository.getType(sender);
+    
+            if (type === 'logistic') {         
+                throw new ErrorTypeClient()
+            }
+        } catch (error) {
+            throw error;
+        }
+    };
+};
